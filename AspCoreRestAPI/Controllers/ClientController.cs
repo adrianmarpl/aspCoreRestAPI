@@ -10,22 +10,21 @@ namespace AspCoreRestAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ClientController : ControllerBase
     {
         private IRepositoryWrapper _repoWrapper;
 
-        public ValuesController(IRepositoryWrapper repoWrapper)
+        public ClientController(IRepositoryWrapper repoWrapper)
         {
             _repoWrapper = repoWrapper;
         }
-        // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult GetAll()
         {
             //_repoWrapper.Client.Create(new Entities.Models.Client() { CompanyName = "AMC" });
             //_repoWrapper.Save();
-            var q = _repoWrapper.Client.FindAll();
-            return new string[] { "value1", "value2" };
+            var clients = _repoWrapper.Client.FindAll();
+            return Ok(clients);
         }
 
         // GET api/values/5
