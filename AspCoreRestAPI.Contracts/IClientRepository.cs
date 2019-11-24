@@ -7,6 +7,6 @@ namespace AspCoreRestAPI.Contracts
 {
     public interface IClientRepository : IRepositoryBase<Client>
     {
-
+        Client GetClientById(int id);
     }
 }

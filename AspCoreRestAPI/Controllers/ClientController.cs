@@ -29,9 +29,18 @@ namespace AspCoreRestAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult GetById(int id)
         {
-            return "value";
+            var client = _repoWrapper.Client.GetClientById(id);
+            if (client == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(client);
+            }
+
         }
 
         // POST api/values
